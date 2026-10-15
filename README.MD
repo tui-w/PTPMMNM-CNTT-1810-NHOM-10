@@ -21,66 +21,91 @@
 </div>
 
 ---
+## Thông tin nhóm thực hiện
 
-<div translate="no" class="notranslate">
+- **Lớp**: CNTT-18-10
+- **Nhóm**: 10
+- **Khoa**: Công nghệ Thông tin - Trường Đại học Đại Nam (FIT-DNU)
 
-## 👥 1. Thông tin nhóm thực hiện
-
-- **Lớp**: CNTT 18-10
-- **Nhóm**: Nhóm 10
-- **Dự án**: CommunityPass — Phần mềm đăng ký tham dự sự kiện (PHP Native)
-
+### Thành viên nhóm:
 | STT | Họ và tên | Mã sinh viên | Vai trò |
-| :---: | :--- | :---: | :--- |
-| 1 | **Nguyễn Văn An** | `1871020003` | Thành viên |
-| 2 | **Lê Đình Huy** | `1871020307` | Thành viên |
-| 3 | **Đào Thị Tươi** | `1871020639` | Trưởng nhóm |
-
-</div>
+|:---:|:---|:---:|:---|
+| 1 | **Nguyễn Văn An** | 1871020003 | Thành viên |
+| 2 | **Lê Đình Huy** | 1871020307 | Thành viên |
+| 3 | **Đào Thị Tươi** | 1871020639 | Trưởng nhóm |
 
 ---
 
-## 📋 2. Kế hoạch và Tiến độ thực hiện 5 Lab
+## Danh sách bài thực hành (Labs)
 
-| Bài Lab | Nội dung | Trạng thái | Thư mục mã nguồn |
-| :---: | :--- | :---: | :---: |
-| **Lab01** | Linux và Shell Script (`check-env.sh`, `scan-source.sh`) | Hoàn thành | [Lab01](Lab01/) |
-| **Lab02** | Module PHP kiểm tra điều kiện đăng ký | Hoàn thành | [Lab02](Lab02/Ma_nguon/) |
-| **Lab03** | Hiển thị sự kiện, lọc đa tiêu chí, xử lý form POST | Hoàn thành | [Lab03](Lab03/Ma_nguon/) |
-| **Lab04** | Bản nháp bằng Session và Cookie | Hoàn thành | [Lab04](Lab04/Ma_nguon/) |
-| **Lab05** | Cơ sở dữ liệu PostgreSQL (Lưu, truy vấn, thống kê) | Hoàn thành | [Lab05](Lab05/Ma_nguon/) |
+| Bài lab | Tên bài | Trạng thái | Kiểm thử tự động |
+|:---|:---|:---:|:---:|
+| [Lab 01](lab1/) | Vận hành dự án trên Linux và viết shell script | **Hoàn thành** | `CHECK_ENV=PASS`<br>`SHELL_CASES=4 FAILED=0` |
+| [Lab 02](lab2/) | Lập trình hướng đối tượng PHP & Xử lý chính sách đăng ký | **Hoàn thành** | `TESTS=5 FAILED=0`<br>`TESTS=8 FAILED=0` |
+| [Lab 03](lab3/) | Xử lý Form, kiểm tra dữ liệu và Bộ lọc sự kiện đa điều kiện | **Hoàn thành** | `TESTS=7 FAILED=0`<br>`TESTS=8 FAILED=0` |
+| [Lab 04](lab4/) | Quản lý phiên làm việc, Cookie và Xác thực | Khởi tạo | Đang phát triển |
+| [Lab 05](lab5/) | Tích hợp cơ sở dữ liệu PostgreSQL | Khởi tạo | Đang phát triển |
 
 ---
 
-## 💻 3. Chuẩn bị môi trường (Ubuntu / WSL)
+## Kết quả thực hiện Lab 1, Lab 2
 
-Hệ thống yêu cầu chạy trên môi trường Linux (Ubuntu 22.04 / 24.04 trên WSL2), sử dụng **PHP từ 8.1 trở lên** và **Git**:
+### 1. Lab 01: Quét cú pháp mã nguồn (`scripts/scan-source.sh`)
+- Kiểm tra tính hợp lệ của thư mục và sự tồn tại của lệnh `php` (trả về mã 2 nếu không hợp lệ).
+- Duyệt qua từng tệp `.php`, kiểm tra cú pháp bằng `php -l`.
+- Đếm tổng số tệp, số tệp vượt qua (pass), số tệp lỗi cú pháp (fail).
+- Xử lý thư mục rỗng trả về mã 2; có lỗi cú pháp trả về mã 1; tất cả tệp hợp lệ trả về mã 0.
+- **Kết quả kiểm thử**:
+  - `bash lab.sh test`: `CHECK_ENV=PASS`
+  - `bash lab.sh extend`: `SHELL_CASES=4 FAILED=0`
+
+---
+
+### 2. Lab 02: Chính sách kiểm soát đăng ký (`RegistrationPolicy.php`)
+- Hoàn thiện phương thức `decide(int $capacity, int $registered, bool $open, bool $waitingEnabled): string`.
+- Kiểm tra tính hợp lệ: sức chứa `<= 0`, số đăng ký `< 0` hoặc `> sức chứa` -> trả về `'rejected'`.
+- Kiểm tra trạng thái đóng: `!$open` -> trả về `'rejected'`.
+- Kiểm tra còn chỗ: `$registered < $capacity` -> trả về `'confirmed'`.
+- Trường hợp hết chỗ: `$waitingEnabled` là `true` -> trả về `'waiting'`, ngược lại trả về `'rejected'`.
+- **Kết quả kiểm thử**:
+  - `bash lab.sh test`: `TESTS=5 FAILED=0`
+  - `bash lab.sh extend`: `TESTS=8 FAILED=0`
+
+---
+## 💻 Yêu cầu môi trường & Hướng dẫn chạy
+
+### 1. Môi trường yêu cầu
+- Hệ điều hành: Ubuntu / WSL2
+- PHP: Phiên bản từ 8.1 trở lên (`php-cli`)
+- Git
+
+### 2. Lệnh kiểm tra và chạy từng bài lab
+
+Di chuyển vào thư mục `Ma_nguon` của bài lab tương ứng:
 
 ```bash
-# Cập nhật package và cài đặt công cụ cần thiết
-sudo apt update
-sudo apt install -y php-cli git unzip curl
-
-# Kiểm tra phiên bản
-php -v
-git --version
+# Ví dụ chạy Lab 1
+cd lab1/Ma_nguon
+bash lab.sh check    # Kiểm tra môi trường
+bash lab.sh test     # Chạy bộ kiểm thử cơ bản
+bash lab.sh extend   # Chạy bộ kiểm thử mở rộng
+bash lab.sh run      # Khởi chạy web server (http://127.0.0.1:8101)
 ```
 
-### Chạy từng bài Lab
-Mỗi bài lab được đặt trong thư mục tương ứng `Lab01/` đến `Lab05/`:
 ```bash
-# Di chuyển vào thư mục mã nguồn bài lab (ví dụ Lab02)
-cd Lab02/Ma_nguon
-
-# Kiểm tra môi trường và chạy thử
+# Ví dụ chạy Lab 2
+cd lab2/Ma_nguon
 bash lab.sh check
+bash lab.sh test
+bash lab.sh extend
 bash lab.sh run
 ```
 
----
-
-## 📚 4. Tham chiếu tài liệu gốc
-
-- Repository đề bài: [FIT-DNU/Open-Source-Software-Development](https://github.com/FIT-DNU/Open-Source-Software-Development)
-- Thiết kế hệ thống: [CommunityPass Design Doc](docs/communitypass/DESIGN.md)
-- Phạm vi sản phẩm: [CommunityPass Product Boundaries](docs/communitypass/PRODUCT.md)
+```bash
+# Ví dụ chạy Lab 3
+cd lab3/Ma_nguon
+bash lab.sh check
+bash lab.sh test
+bash lab.sh extend
+bash lab.sh run      # Khởi chạy web server (http://127.0.0.1:8103)
+```
