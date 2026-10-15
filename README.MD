@@ -22,6 +22,8 @@
 
 ---
 
+<div translate="no" class="notranslate">
+
 ## 👥 1. Thông tin nhóm thực hiện
 
 - **Lớp**: CNTT 18-10
@@ -34,17 +36,19 @@
 | 2 | **Lê Đình Huy** | `1871020307` | Thành viên |
 | 3 | **Đào Thị Tươi** | `1871020639` | Trưởng nhóm |
 
+</div>
+
 ---
 
 ## 📋 2. Kế hoạch và Tiến độ thực hiện 5 Lab
 
-| Bài Lab | Nội dung | Trạng thái | Nhánh Git |
+| Bài Lab | Nội dung | Trạng thái | Thư mục mã nguồn |
 | :---: | :--- | :---: | :---: |
-| **Lab01** | Linux và Shell Script (`check-env.sh`, `scan-source.sh`) | Hoàn thành | [feature/lab1](https://github.com/annguyen0708/PTPMMNM-CNTT-1810-NHOM-10/tree/feature/lab1) |
-| **Lab02** | Module PHP kiểm tra điều kiện đăng ký | Hoàn thành | [feature/lab2](https://github.com/annguyen0708/PTPMMNM-CNTT-1810-NHOM-10/tree/feature/lab2) |
-| **Lab03** | Hiển thị sự kiện, lọc đa tiêu chí, xử lý form POST | Hoàn thành | [feature/lab3](https://github.com/annguyen0708/PTPMMNM-CNTT-1810-NHOM-10/tree/feature/lab3) |
-| **Lab04** | Bản nháp bằng Session và Cookie | Hoàn thành | [feature/lab4](https://github.com/annguyen0708/PTPMMNM-CNTT-1810-NHOM-10/tree/feature/lab4) |
-| **Lab05** | Cơ sở dữ liệu PostgreSQL (Lưu, truy vấn, thống kê) | Hoàn thành | [feature/lab5](https://github.com/annguyen0708/PTPMMNM-CNTT-1810-NHOM-10/tree/feature/lab5) |
+| **Lab01** | Linux và Shell Script (`check-env.sh`, `scan-source.sh`) | Hoàn thành | [Lab01](Lab01/) |
+| **Lab02** | Module PHP kiểm tra điều kiện đăng ký | Hoàn thành | [Lab02](Lab02/Ma_nguon/) |
+| **Lab03** | Hiển thị sự kiện, lọc đa tiêu chí, xử lý form POST | Hoàn thành | [Lab03](Lab03/Ma_nguon/) |
+| **Lab04** | Bản nháp bằng Session và Cookie | Hoàn thành | [Lab04](Lab04/Ma_nguon/) |
+| **Lab05** | Cơ sở dữ liệu PostgreSQL (Lưu, truy vấn, thống kê) | Hoàn thành | [Lab05](Lab05/Ma_nguon/) |
 
 ---
 
@@ -63,13 +67,10 @@ git --version
 ```
 
 ### Chạy từng bài Lab
-Mỗi bài lab được phát triển trên nhánh riêng biệt `feature/labN` và đặt trong thư mục `labN/`:
+Mỗi bài lab được đặt trong thư mục tương ứng `Lab01/` đến `Lab05/`:
 ```bash
-# Chuyển nhánh thực hành
-git checkout feature/lab<N>
-
-# Di chuyển vào thư mục mã nguồn bài lab
-cd lab<N>/Ma_nguon
+# Di chuyển vào thư mục mã nguồn bài lab (ví dụ Lab02)
+cd Lab02/Ma_nguon
 
 # Kiểm tra môi trường và chạy thử
 bash lab.sh check
